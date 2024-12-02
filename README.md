@@ -1,6 +1,6 @@
 # Encrypt Database Fields
 
-Adds an option to encrypt ACF text field values and usermeta fields upon save. Useful for storing sensitive data, such as API keys or private personel information.
+Adds an option to encrypt ACF text field and usermeta fields values in the database. Useful for storing sensitive data, such private personel information.
 
 ## Requirements
 
@@ -9,7 +9,7 @@ Adds an option to encrypt ACF text field values and usermeta fields upon save. U
 
 ## Installation
 
-Download and unzip plugin direcrtory inside of `wp-content/plugins` and activate plugin
+Download and unzip the plugin direcrtory inside of the `plugins` folder and activate plugin
 
 Define the `ENCRYPT_DB_FIELDS_SECRET_KEY` constant inside of `wp-config.php`
 

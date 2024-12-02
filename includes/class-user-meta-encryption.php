@@ -11,6 +11,8 @@ class UserMetaEncryption extends SharedEncryption
         // Hook into user meta operations
         add_filter('update_user_metadata', [$this, 'encrypt_user_meta'], 10, 4);
         add_filter('get_user_metadata', [$this, 'decrypt_user_meta'], 10, 5);
+        add_action('show_user_profile', [$this, 'add_encrypted_label_to_user_meta']);
+        add_action('edit_user_profile', [$this, 'add_encrypted_label_to_user_meta']);
     }
 
     /**
@@ -123,4 +125,26 @@ class UserMetaEncryption extends SharedEncryption
 
         return in_array($meta_key, $keys_to_encrypt, true);
     }
+
+    /**
+     * Add a label to encrypted user meta fields in the admin
+     */
+    function add_encrypted_label_to_user_meta($user)
+    {
+        // Define meta keys that may be encrypted
+        $encrypted_meta_keys = defined('ENCRYPT_DB_FIELDS_META_KEYS') ? ENCRYPT_DB_FIELDS_META_KEYS : [];
+
+        if (empty($encrypted_meta_keys)) {
+            return;
+        }
+
+        echo '<style>';
+        foreach ($encrypted_meta_keys as $index => $meta_key) {
+            // Check if the value is encrypted            
+            echo ($index == 0 ? '' : ',') . "label[for='{$meta_key}']:after";
+        }
+        echo "{ content: ' (encrypted)'; color: #CCC; font-size: 80%; }";
+        echo '</style>';
+    }
+
 }
