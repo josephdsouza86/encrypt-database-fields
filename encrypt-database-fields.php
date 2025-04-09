@@ -49,4 +49,5 @@ spl_autoload_register(function ($class) {
 
 // Initialize the plugin components
 new EncryptDatabaseFields\ACFEncryption();
-new EncryptDatabaseFields\UserMetaEncryption();
+$userMetaEncryption = new EncryptDatabaseFields\UserMetaEncryption();
+new EncryptDatabaseFields\WooCommerce($userMetaEncryption);
