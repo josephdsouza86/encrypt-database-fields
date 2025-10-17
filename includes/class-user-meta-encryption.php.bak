@@ -32,7 +32,7 @@ class UserMetaEncryption extends SharedEncryption
         }
 
         // Encrypt the meta value if not already encrypted
-        if (!is_string($meta_value) || strpos($meta_value, ENCRYPT_DB_FIELDS_PREFIX) !== 0) {
+        if (strpos($meta_value, ENCRYPT_DB_FIELDS_PREFIX) !== 0) {
             $meta_value = $this->encrypt($meta_value);
         }
 
@@ -98,14 +98,14 @@ class UserMetaEncryption extends SharedEncryption
         // Decrypt the meta value if it's encrypted
         if (!empty($meta_value) && is_array($meta_value)) {
             foreach ($meta_value as &$value) {
-                if (is_string($value) && strpos($value, ENCRYPT_DB_FIELDS_PREFIX) === 0) {
+                if (strpos($value, ENCRYPT_DB_FIELDS_PREFIX) === 0) {
                     $value = $this->decrypt($value);
                 }
                 if ($single) {
                     break;
                 }
             }
-        } elseif (is_string($meta_value) && strpos($meta_value, ENCRYPT_DB_FIELDS_PREFIX) === 0) {
+        } elseif (strpos($meta_value, ENCRYPT_DB_FIELDS_PREFIX) === 0) {
             $meta_value = $this->decrypt($meta_value);
         }
 

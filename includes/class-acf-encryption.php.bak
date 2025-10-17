@@ -82,7 +82,7 @@ class ACFEncryption extends SharedEncryption
 
     public function load_value($value, $post_id, $field)
     {
-        if (is_string($value) && strpos($value, ENCRYPT_DB_FIELDS_PREFIX) === 0) {
+        if (strpos($value, ENCRYPT_DB_FIELDS_PREFIX) === 0) {
             return $this->decrypt($value);
         }
         return $value;
@@ -99,7 +99,7 @@ class ACFEncryption extends SharedEncryption
         $visible_roles = $this->get_setting_value($field, 'visible_roles');
     
         // Build CSS for this encrypted fields configuration
-        $field_selector = '.acf-field-' . substr($field['key'] ?? '', 6);
+        $field_selector = '.acf-field-' . substr($field['key'], 6);
         $input_selector = $field['id'];
         $css = "{$field_selector} label:after {
             content: ' (encrypted)';

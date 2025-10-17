@@ -25,15 +25,15 @@ if (!defined('ENCRYPT_DB_FIELDS_SECRET_KEY')) {
 spl_autoload_register(function ($class) {
     $prefix = 'EncryptDatabaseFields\\';
     $base_dir = __DIR__ . '/includes/';
-    $len = strlen($prefix);
+    $len = strlen($prefix ?? '');
 
     // Check if the class belongs to our namespace
-    if (strncmp($prefix, $class, $len) !== 0) {
+    if (strncmp($prefix, $class ?? '', $len) !== 0) {
         return;
     }
 
     // Get the relative class name
-    $relative_class = substr($class, $len);
+    $relative_class = substr($class ?? '', $len);
 
     // Convert PascalCase to kebab-case for the file name
     $file_name = str_replace("--", "-", 'class-' . strtolower(preg_replace('/([A-Z])([a-z])/', '-$1$2', $relative_class))) . '.php';
