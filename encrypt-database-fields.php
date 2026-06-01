@@ -3,7 +3,7 @@
  * Plugin Name: Encrypt Database Fields
  * Plugin URI: https://github.com/josephdsouza86/encrypt-database-fields
  * Description: Adds encryption functionality to ACF and user meta fields.
- * Version: 1.0.0
+ * Version: 1.0.3
  * Author: Joseph D'Souza
  * Author URI: https://github.com/josephdsouza86
  * License: GPL-2.0
