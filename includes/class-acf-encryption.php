@@ -82,7 +82,10 @@ class ACFEncryption extends SharedEncryption
 
     public function load_value($value, $post_id, $field)
     {
-        if (is_string($value) && strpos($value, ENCRYPT_DB_FIELDS_PREFIX) === 0) {
+        if (!is_string($value)) {
+            return $value;
+        }
+        if (strpos($value, ENCRYPT_DB_FIELDS_PREFIX) === 0) {
             return $this->decrypt($value);
         }
         return $value;
